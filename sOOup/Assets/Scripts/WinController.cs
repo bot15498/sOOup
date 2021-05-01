@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class WinController : MonoBehaviour
 {
     public List<string> sceneOrder = new List<string>();
+    public Animator anime;
+    public bool isAnimating = false;
 
     [SerializeField]
     private bool didWin = false;
@@ -15,6 +17,8 @@ public class WinController : MonoBehaviour
 
     void Start()
     {
+        anime = GameObject.Find("WinControllerTransition").GetComponent<Animator>();
+        anime.SetBool("isFadeout", false);
         if (!winManagerExists)
         {
             winManagerExists = true;
@@ -28,29 +32,58 @@ public class WinController : MonoBehaviour
 
     void Update()
     {
-        
+        if(anime == null)
+        {
+            anime = GameObject.Find("WinControllerTransition").GetComponent<Animator>();
+        }
+        if(anime.GetCurrentAnimatorStateInfo(0).IsName("notransition"))
+        {
+            isAnimating = false;
+        }
+        else
+        {
+            isAnimating = true;
+        }
     }
 
     public void SetWin()
     {
-        // do animation to transition here
-
-
         didWin = true;
-        currScene++;
         if(currScene >= sceneOrder.Count)
         {
             // done, so go to main menu / win screen.
         }
         else
         {
-            SceneManager.LoadScene(sceneOrder[currScene]);
+            StartCoroutine(TransitionToFadein());
         }
     }
 
-    public void ResetLevel()
+    public void SetLose()
     {
         didWin = false;
-        SceneManager.LoadScene(sceneOrder[currScene]);
+        StartCoroutine(TransitionToFadein(false));
+    }
+
+    private IEnumerator TransitionToFadein(bool didWin = true)
+    {
+        anime.SetBool("isFadeout", true);
+        isAnimating = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        while (anime.GetCurrentAnimatorStateInfo(0).IsName("fadeout"))
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+
+        if(didWin)
+        {
+            currScene++;
+            SceneManager.LoadScene(sceneOrder[currScene]);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneOrder[currScene]);
+        }
+        yield return null;
     }
 }
