@@ -7,6 +7,7 @@ public class WinController : MonoBehaviour
 {
     public List<string> sceneOrder = new List<string>();
     public Animator anime;
+    public bool isAnimating = false;
 
     [SerializeField]
     private bool didWin = false;
@@ -33,8 +34,15 @@ public class WinController : MonoBehaviour
     {
         if(anime == null)
         {
-            Debug.Log("here");
             anime = GameObject.Find("WinControllerTransition").GetComponent<Animator>();
+        }
+        if(anime.GetCurrentAnimatorStateInfo(0).IsName("notransition"))
+        {
+            isAnimating = false;
+        }
+        else
+        {
+            isAnimating = true;
         }
     }
 
@@ -60,6 +68,7 @@ public class WinController : MonoBehaviour
     private IEnumerator TransitionToFadein(bool didWin = true)
     {
         anime.SetBool("isFadeout", true);
+        isAnimating = true;
         yield return new WaitForSecondsRealtime(0.5f);
         while (anime.GetCurrentAnimatorStateInfo(0).IsName("fadeout"))
         {
@@ -68,7 +77,6 @@ public class WinController : MonoBehaviour
 
         if(didWin)
         {
-            // pause for a bit
             currScene++;
             SceneManager.LoadScene(sceneOrder[currScene]);
         }
@@ -77,11 +85,5 @@ public class WinController : MonoBehaviour
             SceneManager.LoadScene(sceneOrder[currScene]);
         }
         yield return null;
-    }
-
-    public void ResetLevel()
-    {
-        didWin = false;
-        SceneManager.LoadScene(sceneOrder[currScene]);
     }
 }
