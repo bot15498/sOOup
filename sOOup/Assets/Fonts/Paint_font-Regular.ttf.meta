@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: a81af7d5958f976459db15396637c51e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Paint_font
+  fontNames:
+  - Paint_font
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4ed855ede149aa94e8e3c5dcea7f42b8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
