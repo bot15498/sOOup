@@ -23,7 +23,7 @@ public class TestWinController : MonoBehaviour
             winController = FindObjectOfType<WinController>();
         }
 
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKeyUp(KeyCode.K))
         {
             winController.SetWin();
         }
