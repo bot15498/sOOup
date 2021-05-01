@@ -120,6 +120,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &299785549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7352459266304184762, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Soup Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7352459266304184711, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 022aaba69adf4134a93e5e5b7c7e3e8b, type: 3}
 --- !u!1001 &382651633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -598,7 +667,7 @@ MonoBehaviour:
   camera: {fileID: 1109089251}
   soupDrop: {fileID: 7352459266304184762, guid: 022aaba69adf4134a93e5e5b7c7e3e8b,
     type: 3}
-  chanceToSpawnDrop: 0.8
+  chanceToSpawnDrop: 0.2
 --- !u!212 &1488744423
 SpriteRenderer:
   m_ObjectHideFlags: 0

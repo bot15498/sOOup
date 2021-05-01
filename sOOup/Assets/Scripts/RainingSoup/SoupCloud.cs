@@ -10,12 +10,17 @@ public class SoupCloud : MonoBehaviour
     public float chanceToSpawnDrop = .5f;
 
     private Vector2 target;
+    private float spriteWidth = 0;
     
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("spawnDrop",.5f,1f);
+        spriteWidth = camera.ScreenToWorldPoint(new Vector3(GetComponent<SpriteRenderer>().sprite.rect.width,0,0)).x;
+        InvokeRepeating("spawnLeftDrop",.7f,1f);
+        InvokeRepeating("spawnRightDrop", .2f, 1f);
+        InvokeRepeating("spawnMiddleDrop", .9f, 1f);
         InvokeRepeating("updateTarget", .0f, 1f);
+
     }
 
     // Update is called once per frame
@@ -32,12 +37,33 @@ public class SoupCloud : MonoBehaviour
     }
 
 
-    private void spawnDrop()
+    private void spawnLeftDrop()
     {
-        if(Random.value <= chanceToSpawnDrop)
+        //Left Drop
+        if (Random.value <= chanceToSpawnDrop)
         {
-            GameObject spawnedDrop = Instantiate(soupDrop);
-            spawnedDrop.transform.position = this.transform.position;
+            GameObject leftDrop = Instantiate(soupDrop);
+            leftDrop.transform.position = new Vector3(this.transform.position.x - spriteWidth / 2, this.transform.position.y, 0);
+        }
+    }
+
+    private void spawnMiddleDrop()
+    {
+        //  Middle Drop
+        if (Random.value <= chanceToSpawnDrop)
+        {
+            GameObject middleDrop = Instantiate(soupDrop);
+            middleDrop.transform.position = this.transform.position;
+        }
+    }
+
+    private void spawnRightDrop()
+    { 
+        //Right drop
+        if (Random.value <= chanceToSpawnDrop)
+        {
+            GameObject rightDrop = Instantiate(soupDrop);
+            rightDrop.transform.position = new Vector3(this.transform.position.x + spriteWidth / 2, this.transform.position.y, 0);
         }
     }
 
