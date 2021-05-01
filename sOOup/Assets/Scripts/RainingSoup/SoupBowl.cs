@@ -8,6 +8,7 @@ public class SoupBowl : MonoBehaviour
     public Camera camera;
     public float speed = 0.1f;
     public GameObject soupDrop;
+    public GameObject evilDrop;
     public Text soupCounter;
     private int soupCollected = 0; 
     // Start is called before the first frame update
@@ -32,11 +33,41 @@ public class SoupBowl : MonoBehaviour
     {
         if(col.gameObject.tag == soupDrop.tag)
         {
-            Debug.Log("OnCollisionEnter2D");
             Destroy(col.gameObject);
             soupCollected++;
             soupCounter.text = "Soup: " + soupCollected.ToString();
+        }else if(col.gameObject.tag == evilDrop.tag)
+        {
+            Destroy(col.gameObject);
+            soupCollected-=5;
+            soupCounter.text = "Soup: " + soupCollected.ToString();
+            StartCoroutine(flash(Color.red));
+            StartCoroutine(Rotate(1));
         }
         
+    }
+
+
+    IEnumerator flash(Color color)
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>(); 
+        Color currentColor = spriteRenderer.color;
+        spriteRenderer.color = color;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = currentColor;
+    }
+
+    IEnumerator Rotate(float duration)
+    {
+        Vector3 startRotation = transform.eulerAngles;
+        float endRotation = startRotation.z + 360.0f;
+        float t = 0.0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation.z, endRotation, t / duration) % 360.0f;
+            transform.eulerAngles = new Vector3(startRotation.x, yRotation, startRotation.z);
+            yield return null;
+        }
     }
 }

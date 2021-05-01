@@ -6,10 +6,11 @@ public class SoupCloud : MonoBehaviour
 {
     public float speed = 10.0f;
     public Camera camera;
-    public GameObject soupDrop;
+    public SoupDrop soupDrop;
+    public EvilSoupDrop evilDrop;
     public float chanceToSpawnDrop = .5f;
 
-    private Vector2 target;
+    public Vector2 target;
     private float spriteWidth = 0;
     
     // Start is called before the first frame update
@@ -42,8 +43,19 @@ public class SoupCloud : MonoBehaviour
         //Left Drop
         if (Random.value <= chanceToSpawnDrop)
         {
-            GameObject leftDrop = Instantiate(soupDrop);
-            leftDrop.transform.position = new Vector3(this.transform.position.x - spriteWidth / 2, this.transform.position.y, 0);
+            if(Random.value >= .1)
+            {
+                SoupDrop leftDrop = Instantiate(soupDrop);
+                leftDrop.parent = this;
+                leftDrop.transform.position = new Vector3(this.transform.position.x - spriteWidth / 2, this.transform.position.y, 0);
+            }
+            else
+            {
+                EvilSoupDrop leftDrop = Instantiate(evilDrop);
+                leftDrop.parent = this;
+                leftDrop.transform.position = new Vector3(this.transform.position.x - spriteWidth / 2, this.transform.position.y, 0);
+            }
+
         }
     }
 
@@ -52,8 +64,18 @@ public class SoupCloud : MonoBehaviour
         //  Middle Drop
         if (Random.value <= chanceToSpawnDrop)
         {
-            GameObject middleDrop = Instantiate(soupDrop);
-            middleDrop.transform.position = this.transform.position;
+            if (Random.value >= .1)
+            {
+                SoupDrop middleDrop = Instantiate(soupDrop);
+                middleDrop.parent = this;
+                middleDrop.transform.position = this.transform.position;
+            }else
+            {
+                EvilSoupDrop middleDrop = Instantiate(evilDrop);
+                middleDrop.parent = this;
+                middleDrop.transform.position = this.transform.position;
+            }
+
         }
     }
 
@@ -62,8 +84,18 @@ public class SoupCloud : MonoBehaviour
         //Right drop
         if (Random.value <= chanceToSpawnDrop)
         {
-            GameObject rightDrop = Instantiate(soupDrop);
-            rightDrop.transform.position = new Vector3(this.transform.position.x + spriteWidth / 2, this.transform.position.y, 0);
+            if (Random.value >= .1)
+            {
+                SoupDrop rightDrop = Instantiate(soupDrop);
+                rightDrop.parent = this;
+                rightDrop.transform.position = new Vector3(this.transform.position.x + spriteWidth / 2, this.transform.position.y, 0);
+            }else
+            {
+                EvilSoupDrop rightDrop = Instantiate(evilDrop);
+                rightDrop.parent = this;
+                rightDrop.transform.position = new Vector3(this.transform.position.x + spriteWidth / 2, this.transform.position.y, 0);
+            }
+
         }
     }
 
