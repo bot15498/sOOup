@@ -39,6 +39,9 @@ public class Hand : MonoBehaviour
 
     void updatePosition()
     {
+        
+
+
         float step = speed * Time.deltaTime;
         transform.position += new Vector3(0, step / 2, 0);
         // Are we moving towards the target and further than 1distance
@@ -46,6 +49,7 @@ public class Hand : MonoBehaviour
         {
             //Move towards the target
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
+            Debug.Log(Vector2.Distance(transform.position, target.transform.position));
 
         }
         // Are we moving back to the initial pos and further than 1distance
@@ -53,7 +57,9 @@ public class Hand : MonoBehaviour
         {
             //Move back towards home pos
             transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
-        }else
+            Debug.Log(Vector2.Distance(transform.position, initialPos));
+        }
+        else
         {
             switch(movementStatus)
             {

@@ -8,7 +8,8 @@ public class Victim : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Sprite[] damageStates;
     public int damagePerState;
-    private int health;
+    public int health;
+
 
     void Start()
     {
