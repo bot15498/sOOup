@@ -12,7 +12,7 @@ public class Hand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Distance to target:" + Vector2.Distance(transform.position, target.transform.position));
+        //Debug.Log("Distance to target:" + Vector2.Distance(transform.position, target.transform.position));
         initialPos = transform.position;
     }
 
@@ -49,7 +49,7 @@ public class Hand : MonoBehaviour
         {
             //Move towards the target
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
-            Debug.Log(Vector2.Distance(transform.position, target.transform.position));
+            //Debug.Log(Vector2.Distance(transform.position, target.transform.position));
 
         }
         // Are we moving back to the initial pos and further than 1distance
@@ -57,7 +57,7 @@ public class Hand : MonoBehaviour
         {
             //Move back towards home pos
             transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
-            Debug.Log(Vector2.Distance(transform.position, initialPos));
+            //Debug.Log(Vector2.Distance(transform.position, initialPos));
         }
         else
         {
