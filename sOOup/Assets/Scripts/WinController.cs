@@ -38,7 +38,14 @@ public class WinController : MonoBehaviour
 
         didWin = true;
         currScene++;
-        SceneManager.LoadScene(sceneOrder[currScene]);
+        if(currScene >= sceneOrder.Count)
+        {
+            // done, so go to main menu / win screen.
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneOrder[currScene]);
+        }
     }
 
     public void ResetLevel()
