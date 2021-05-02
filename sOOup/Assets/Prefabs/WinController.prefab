@@ -51,9 +51,8 @@ MonoBehaviour:
   - Level5
   - Level2
   - Bludgeon
-  - SoupStamp
-  - Assassinate
   - Level1
+  - Assassinate
   anime: {fileID: 0}
   isAnimating: 0
   didWin: 0
