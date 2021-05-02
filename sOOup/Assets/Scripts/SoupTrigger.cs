@@ -6,11 +6,12 @@ public class SoupTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
     bool playerInRange;
-    
+    public GameObject buttonprompt;
 
     void Start()
     {
         playerInRange = false;
+        buttonprompt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class SoupTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             playerInRange = true;
+            buttonprompt.SetActive(true);
         }
     }
 
@@ -33,6 +35,7 @@ public class SoupTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            buttonprompt.SetActive(false);
             playerInRange = false;
         }
     }
