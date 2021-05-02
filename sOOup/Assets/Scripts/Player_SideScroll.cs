@@ -15,7 +15,7 @@ public class Player_SideScroll : MonoBehaviour
 
     [Space]
     [Header("Booleans")]
-    public bool canMove;
+    public bool canMove = true;
     public bool NearGround;
     public bool facingRight;
     public bool isWalking;
@@ -92,8 +92,10 @@ public class Player_SideScroll : MonoBehaviour
     
     void Walk(Vector2 dir)
     {
-
-        rb.velocity = new Vector2(dir.x * maxSpeed, rb.velocity.y);
+        if(canMove)
+        {
+            rb.velocity = new Vector2(dir.x * maxSpeed, rb.velocity.y);
+        }
     }
 
 
