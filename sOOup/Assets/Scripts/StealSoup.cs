@@ -43,6 +43,7 @@ public class StealSoup : MonoBehaviour
         if(timer <= 0)
         {
             Debug.Log("PLAYER WIN");
+            FindObjectOfType<WinController>().SetWin();
         }
 
     }
