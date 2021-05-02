@@ -119,7 +119,7 @@ public class Player_SideScroll : MonoBehaviour
         }
 
         // Multiply the player's x local scale by -1
-        
+        Debug.Log(transform.localScale);
     }
 
     
