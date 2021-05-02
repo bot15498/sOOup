@@ -7,11 +7,13 @@ public class Player_Topdown : MonoBehaviour
     public float speed = 12f;
 
     Rigidbody2D playerRigidbody;
+    Animator anim;
 
     void Awake()
     {
 
         playerRigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -33,6 +35,17 @@ public class Player_Topdown : MonoBehaviour
         //pos.x = Mathf.Clamp(pos.x, -29.25f, -11.4f);
 
         playerRigidbody.velocity = new Vector2(h * speed, v * speed);
+
+
+
+        if (h != 0 || v != 0)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
     }
 
 
