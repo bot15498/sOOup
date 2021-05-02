@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StealSoup : MonoBehaviour
 {
@@ -9,13 +10,17 @@ public class StealSoup : MonoBehaviour
     public float SoupEatTimer;
     float timer;
     bool playerInRange;
+    public Text timerText;
+    SpriteRenderer sr;
+    public GameObject pivot;
 
     void Start()
     {
         GuardIsPissed = false;
         playerInRange = false;
-        timer = 0;
-
+        timer = SoupEatTimer;
+        timerText.enabled = false;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -25,14 +30,17 @@ public class StealSoup : MonoBehaviour
         {
             Debug.Log("SOUP");
             GuardIsPissed = true;
+            timerText.enabled = true;
         }
 
         if(GuardIsPissed == true)
         {
-            timer += Time.deltaTime;
+            timer -= Time.deltaTime;
+            timerText.text = "EVADE GUARD:" + timer.ToString("F2");
+            pivot.SetActive(false);
         }
         
-        if(timer >= SoupEatTimer)
+        if(timer <= 0)
         {
             Debug.Log("PLAYER WIN");
         }

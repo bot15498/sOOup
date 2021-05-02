@@ -26,6 +26,8 @@ public class Guard : MonoBehaviour
     public float rotationTimer;
     Rigidbody2D rb;
     private Vector3 targetAngles;
+    Animator anim;
+
 
     void Start()
     {
@@ -33,7 +35,8 @@ public class Guard : MonoBehaviour
         currentBehaviorState = BehaviorState.idle;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        seePlayer = false; 
+        seePlayer = false;
+        anim = GetComponent<Animator>();
 
     }
     IEnumerator FindTargetsWithDelay(float delay)
@@ -113,6 +116,8 @@ public class Guard : MonoBehaviour
             break;
 
             case BehaviorState.Chase:
+
+                anim.SetBool("IsWalking", true);
 
                 Vector2 PlayerMove = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
 
