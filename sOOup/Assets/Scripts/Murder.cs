@@ -7,7 +7,8 @@ public class Murder : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Player;
     public GameObject murderBody;
-    
+
+    bool startedWin = false;
 
     bool playerInRange;
 
@@ -25,6 +26,11 @@ public class Murder : MonoBehaviour
 
             Player.SetActive(false);
             murderBody.SetActive(true);
+            if (!startedWin)
+            {
+                StartCoroutine(DelayWin());
+                startedWin = true;
+            }
         }
     }
 
@@ -42,5 +48,12 @@ public class Murder : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    private IEnumerator DelayWin()
+    {
+        yield return new WaitForSeconds(2f);
+        FindObjectOfType<WinController>().SetWin();
+        yield return null;
     }
 }

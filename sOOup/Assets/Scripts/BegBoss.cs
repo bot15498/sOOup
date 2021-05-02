@@ -14,6 +14,8 @@ public class BegBoss : MonoBehaviour
     public Vector3 offset;
     public GameObject fired;
 
+    private bool didwin = false;
+
     void Start()
     {
         playerInRange = false;
@@ -43,10 +45,11 @@ public class BegBoss : MonoBehaviour
             }
 
 
-            if(currentBegCount >= begCount)
+            if(!didwin && currentBegCount >= begCount)
             {
                 fired.SetActive(true);
-
+                didwin = true;
+                StartCoroutine(DelayWin());
             }
 
 
@@ -68,5 +71,12 @@ public class BegBoss : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    private IEnumerator DelayWin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<WinController>().SetWin();
+        yield return null;
     }
 }
