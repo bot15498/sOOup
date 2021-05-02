@@ -54,6 +54,8 @@ public class Player_Topdown : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             //Die
+            FindObjectOfType<WinController>().SetLose();
+            //Debug.Log("asd");
         }
     }
 
