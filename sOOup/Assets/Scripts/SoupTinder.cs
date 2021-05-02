@@ -10,6 +10,7 @@ public class SoupTinder : MonoBehaviour
     public List<bool> possibleAnswers;
     public GameObject throwawayPrefab;
     public int numWrong = 0;
+    public GameObject instructions;
 
     private bool lastA = false;
     private bool lastD = false;
@@ -25,6 +26,7 @@ public class SoupTinder : MonoBehaviour
     {
         wc = FindObjectOfType<WinController>();
         anime = GetComponent<Animator>();
+        instructions.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class SoupTinder : MonoBehaviour
 
             if(isReadyForSwiping)
             {
+                instructions.SetActive(true);
                 if (currQuestion <= numQuestions)
                 {
                     bool ainput = Input.GetKey(KeyCode.A);

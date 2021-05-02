@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SoupCustomer : MonoBehaviour
 {
+    public GameObject buttonPrompt;
     private TalkingController tc;
 
     void Start()
     {
         tc = FindObjectOfType<TalkingController>();
+        buttonPrompt.SetActive(false);
     }
 
     void Update()
@@ -22,10 +24,12 @@ public class SoupCustomer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         tc.canStartDialogue = true;
+        buttonPrompt.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         tc.canStartDialogue = false;
+        buttonPrompt.SetActive(false);
     }
 }

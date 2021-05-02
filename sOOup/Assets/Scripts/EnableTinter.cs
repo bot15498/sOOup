@@ -6,10 +6,11 @@ public class EnableTinter : MonoBehaviour
 {
     public GameObject phone;
     public GameObject player;
+    public GameObject buttonprompt;
     private bool canOpenPhone = false;
     void Start()
     {
-        
+        buttonprompt.SetActive(false);
     }
 
     void Update()
@@ -24,10 +25,12 @@ public class EnableTinter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         canOpenPhone = true;
+        buttonprompt.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         canOpenPhone = false;
+        buttonprompt.SetActive(false);
     }
 }
