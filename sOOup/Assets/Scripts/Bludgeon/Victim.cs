@@ -28,7 +28,7 @@ public class Victim : MonoBehaviour
 
 
         // Check for user input
-        if (Input.GetKeyDown("x"))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             health--;
 

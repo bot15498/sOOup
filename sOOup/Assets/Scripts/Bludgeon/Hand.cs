@@ -8,33 +8,41 @@ public class Hand : MonoBehaviour
     private Vector2 initialPos;
     public float speed = 100.0f;
     private string movementStatus = "IDLE";
+    private Animator anime;
+    private bool lastClick = false;
+    private bool isAnimation = false;
 
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Distance to target:" + Vector2.Distance(transform.position, target.transform.position));
         initialPos = transform.position;
+        anime = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool click = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0);
         // Check for user input
-        if (Input.GetKeyDown("x"))
+        if (click && lastClick != click)
         {
-            movementStatus = "TOWARDS";
+            //movementStatus = "TOWARDS";
+            anime.SetBool("isMoving", true);
+            isAnimation = true;
+        }
+        else if(anime.GetCurrentAnimatorStateInfo(0).IsName("moving"))
+        {
+            anime.SetBool("isMoving", false);
         }
 
 
-        if(movementStatus != "IDLE")
-        {
-            updatePosition();
+        //if(movementStatus != "IDLE")
+        //{
+        //    updatePosition();
 
-        }
-        
-
-
-        
+        //}
+        lastClick = click;
     }
 
     void updatePosition()
@@ -49,6 +57,7 @@ public class Hand : MonoBehaviour
         {
             //Move towards the target
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
+            anime.SetBool("isMoving", true);
             //Debug.Log(Vector2.Distance(transform.position, target.transform.position));
 
         }
@@ -57,6 +66,7 @@ public class Hand : MonoBehaviour
         {
             //Move back towards home pos
             transform.position = Vector2.MoveTowards(transform.position, initialPos, step);
+            anime.SetBool("isMoving", false);
             //Debug.Log(Vector2.Distance(transform.position, initialPos));
         }
         else
@@ -70,6 +80,7 @@ public class Hand : MonoBehaviour
                     movementStatus = "IDLE";
                     break;
             }
+            anime.SetBool("isMoving", false);
         }
     }
 }
