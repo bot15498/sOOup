@@ -40,7 +40,7 @@ public class Victim : MonoBehaviour
             }
             else
             {
-                StartCoroutine(flash(Color.red));
+                // StartCoroutine(flash(Color.red));
             }
 
             // If our health has dropped below a damage threshhold
