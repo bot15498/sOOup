@@ -21,7 +21,11 @@ public class Guard : MonoBehaviour
     public BehaviorState currentBehaviorState;
     public Transform playerTransform;
     public float speed;
+    public float rotationInterval;
+    public float smooth;
+    public float rotationTimer;
     Rigidbody2D rb;
+    private Vector3 targetAngles;
 
     void Start()
     {
@@ -52,7 +56,7 @@ public class Guard : MonoBehaviour
             if (Vector3.Angle(transform.right,dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visableTargets.Add(target);
                     seePlayer = true;
@@ -78,8 +82,9 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
-        if(StealSoup.GuardIsPissed == true)
+        if (StealSoup.GuardIsPissed == true)
         {
             currentBehaviorState = BehaviorState.Chase;
         }
@@ -87,7 +92,19 @@ public class Guard : MonoBehaviour
         switch (currentBehaviorState)
         {
             case BehaviorState.idle:
-                
+
+                rotationTimer += Time.deltaTime;
+
+                if(rotationTimer >= rotationInterval)
+                {
+                    transform.Rotate(0.0f, 0.0f, 180.0f);
+
+                    rotationTimer = 0;
+
+                }
+
+
+
                 if(seePlayer == true)
                 {
                     currentBehaviorState = BehaviorState.Chase;
@@ -113,4 +130,7 @@ public class Guard : MonoBehaviour
 
         }
     }
+
+
+
 }
