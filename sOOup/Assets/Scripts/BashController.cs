@@ -5,6 +5,7 @@ using UnityEngine;
 public class BashController : MonoBehaviour
 {
     public GameObject victim;
+    public GameObject victimbg;
     public GameObject hand;
     public Player_SideScroll player;
     [SerializeField]
@@ -20,6 +21,7 @@ public class BashController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && canbeat && !victim.activeSelf)
         {
             victim.SetActive(true);
+            victimbg.SetActive(true);
             hand.SetActive(true);
             player.canMove = false;
         }
