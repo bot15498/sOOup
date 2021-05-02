@@ -9,7 +9,7 @@ public class Player_SideScroll : MonoBehaviour
 
     public int side = 1;
     private SpriteRenderer sr;
-    Animator anim;
+    public Animator anim;
     private Rigidbody2D rb;
     private CollisionCheck cCheck;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BegBoss : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BegBoss : MonoBehaviour
     bool isBegging;
     public int begCount;
     int currentBegCount;
+    public GameObject buttonpromptText1;
     public GameObject[] BegTexts;
     public Vector3 offset;
     public GameObject fired;
@@ -22,6 +24,7 @@ public class BegBoss : MonoBehaviour
         isBegging = false;
         currentBegCount = 0;
         fired.SetActive(false);
+        buttonpromptText1.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,12 +33,12 @@ public class BegBoss : MonoBehaviour
         if (playerInRange == true && Input.GetKeyDown(KeyCode.E))
         {
             isBegging = true;
-            player.GetComponent<Player_SideScroll>().enabled = false;
-
-
+            player.GetComponent<Player_SideScroll>().canMove = false;
+            buttonpromptText1.GetComponent<Text>().text = "\"SPACE\"";
+            //player.GetComponent<Player_SideScroll>().enabled = false;
         }
 
-        if(isBegging == true)
+        if (isBegging == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -48,6 +51,7 @@ public class BegBoss : MonoBehaviour
             if(!didwin && currentBegCount >= begCount)
             {
                 fired.SetActive(true);
+                buttonpromptText1.SetActive(false);
                 didwin = true;
                 StartCoroutine(DelayWin());
             }
@@ -62,6 +66,7 @@ public class BegBoss : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = true;
+            buttonpromptText1.SetActive(true);
         }
     }
 
@@ -70,12 +75,13 @@ public class BegBoss : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = false;
+            buttonpromptText1.SetActive(false);
         }
     }
 
     private IEnumerator DelayWin()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         FindObjectOfType<WinController>().SetWin();
         yield return null;
     }
