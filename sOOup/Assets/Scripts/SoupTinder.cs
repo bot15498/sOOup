@@ -17,11 +17,14 @@ public class SoupTinder : MonoBehaviour
     private bool currAnswer = false;
     private WinController wc;
     private bool calledEnd = false;
+    private Animator anime;
+    [SerializeField]
+    private bool isReadyForSwiping = false;
     
     void Start()
     {
-        MakeProfile();
         wc = FindObjectOfType<WinController>();
+        anime = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,35 +32,44 @@ public class SoupTinder : MonoBehaviour
     {
         if(!wc.isAnimating)
         {
-            if (currQuestion <= numQuestions)
+            if(!anime.GetBool("openPhone"))
             {
-                bool ainput = Input.GetKey(KeyCode.A);
-                bool dinput = Input.GetKey(KeyCode.D);
-                if (ainput && lastA != ainput)
-                {
-                    curr.GetComponent<TinderThrowaway>().SendFlying(true);
-                    numWrong += !currAnswer ? 0 : 1;
-                    MakeProfile();
-                }
-                else if (dinput && lastD != dinput)
-                {
-                    curr.GetComponent<TinderThrowaway>().SendFlying(false);
-                    numWrong += currAnswer ? 0 : 1;
-                    MakeProfile();
-                }
+                anime.SetBool("openPhone", true);
+                StartCoroutine(WaitForPhoneOpen());
+            }
 
-                lastA = ainput;
-                lastD = dinput;
-            }
-            else if (!calledEnd && currQuestion > numQuestions && numWrong == 0)
+            if(isReadyForSwiping)
             {
-                wc.SetWin();
-                calledEnd = true;
-            }
-            else if (!calledEnd && currQuestion > numQuestions && numWrong > 0)
-            {
-                wc.SetLose();
-                calledEnd = true;
+                if (currQuestion <= numQuestions)
+                {
+                    bool ainput = Input.GetKey(KeyCode.A);
+                    bool dinput = Input.GetKey(KeyCode.D);
+                    if (ainput && lastA != ainput)
+                    {
+                        curr.GetComponent<TinderThrowaway>().SendFlying(true);
+                        numWrong += !currAnswer ? 0 : 1;
+                        MakeProfile();
+                    }
+                    else if (dinput && lastD != dinput)
+                    {
+                        curr.GetComponent<TinderThrowaway>().SendFlying(false);
+                        numWrong += currAnswer ? 0 : 1;
+                        MakeProfile();
+                    }
+
+                    lastA = ainput;
+                    lastD = dinput;
+                }
+                else if (!calledEnd && currQuestion > numQuestions && numWrong == 0)
+                {
+                    wc.SetWin();
+                    calledEnd = true;
+                }
+                else if (!calledEnd && currQuestion > numQuestions && numWrong > 0)
+                {
+                    wc.SetLose();
+                    calledEnd = true;
+                }
             }
         }        
     }
@@ -71,6 +83,20 @@ public class SoupTinder : MonoBehaviour
         possibleAnswers.RemoveAt(idx);
         possibleSprites.RemoveAt(idx);
         currQuestion++;
-        curr.GetComponent<TinderThrowaway>().renderer.sortingOrder = 99 - currQuestion;
+        curr.GetComponent<TinderThrowaway>().renderer.sortingOrder = -1 * currQuestion;
+    }
+
+    private IEnumerator WaitForPhoneOpen()
+    {
+        isReadyForSwiping = false;
+        while (anime.GetCurrentAnimatorStateInfo(0).IsName("openPhone"))
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(1f);
+        anime.SetBool("screenOn", true);
+        MakeProfile();
+        isReadyForSwiping = true;
+        yield return null;
     }
 }
