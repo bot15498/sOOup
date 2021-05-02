@@ -13,12 +13,14 @@ public class SoupPray : MonoBehaviour
     float timer;
     private WinController wc;
     private Animator anime;
+    AudioSource AS;
     void Start()
     {
         playerInRange = false;
         timer = 0;
         ispraying = false;
         wc = FindObjectOfType<WinController>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,11 +34,14 @@ public class SoupPray : MonoBehaviour
         if (playerInRange == true && Input.GetKeyDown(KeyCode.E))
         {
             ispraying = true;
+            AS.Play();
         }
 
         if(ispraying == true)
         {
+            
             player.anim.SetBool("pray", true);
+            player.GetComponent<Player_SideScroll>().enabled = false;
             timer += Time.deltaTime;
             anime = GetComponent<Animator>();
             anime.SetBool("startPraying", true);
@@ -79,7 +84,7 @@ public class SoupPray : MonoBehaviour
             if (ispraying == true)
             {
                 Debug.Log("SOUP FAIL");
-                wc.SetLose();
+                //wc.SetLose();
             }
         }
     }
