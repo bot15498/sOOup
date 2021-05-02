@@ -44,9 +44,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneOrder:
-  - WincontrollerTest
-  - WwincontrollerTest2
-  - WincontrollerTest
+  - Level1
+  - SellingSoup
+  - SoupTinder
+  - TopDown
+  - Level5
+  - Level2
+  - Bludgeon
+  - SoupStamp
+  - Assassinate
+  - Level1
   anime: {fileID: 0}
+  isAnimating: 0
   didWin: 0
   currScene: 0

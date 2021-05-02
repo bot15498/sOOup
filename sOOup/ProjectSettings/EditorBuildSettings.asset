@@ -20,4 +20,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bludgeon.unity
     guid: c3b29987ca6c7af468302fb08d885bf1
+  - enabled: 1
+    path: Assets/Scenes/AssassinateChef.unity
+    guid: b09a70bb9361a2c4191b490b61d66364
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 1cc9feb01a7a4684a95a1d19d1e0c05a
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 423d6c7469ba1524ebc992f32915316a
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: c338b4f37a39a6c4686573f35626e0b7
+  - enabled: 1
+    path: Assets/Scenes/Murder.unity
+    guid: 9414bfed3eb945b4cba43f5699598f23
+  - enabled: 1
+    path: Assets/Scenes/SellingSoup.unity
+    guid: 040d9f81c5c3de743b45bfc126f29321
+  - enabled: 1
+    path: Assets/Scenes/SoupStamp.unity
+    guid: 6f3e502408dc6c348989493250442b15
+  - enabled: 1
+    path: Assets/Scenes/SoupTinder.unity
+    guid: 266d11fd96fbf7b4e8c868dd1f1a4c59
+  - enabled: 1
+    path: Assets/Scenes/TopDown.unity
+    guid: 4df2e3bff7ec67f4eaa56cc8b0847258
   m_configObjects: {}
