@@ -10,20 +10,30 @@ public class SoupBowl : MonoBehaviour
     public GameObject soupDrop;
     public GameObject evilDrop;
     public Text soupCounter;
-    private int soupCollected = 0; 
+    private int soupCollected = 0;
+    private WinController wc;
     // Start is called before the first frame update
     void Start()
     {
-        
+        wc = FindObjectOfType<WinController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (wc == null)
+            wc = FindObjectOfType<WinController>();
+
         //Debug.Log(Input.mousePosition);
         //transform.position = Vector2.Lerp(transform.position, camera.ScreenToWorldPoint(Input.mousePosition), speed*Time.deltaTime);
         Vector2 cameraPos = camera.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(cameraPos.x,cameraPos.y,0);
+
+        // If we have 10 soup we win
+        if(soupCollected >= 10)
+        {
+            wc.SetWin();
+        }
 
     }
 

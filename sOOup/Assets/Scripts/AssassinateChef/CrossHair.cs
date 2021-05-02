@@ -9,20 +9,24 @@ public class CrossHair : MonoBehaviour
     public Wander chef;
     public Wander dude;
     public Text scoreDisplay;
+    private WinController wc;
 
     // Start is called before the first frame update
     private SpriteRenderer spriteRenderer;
     private int score = 0;
     void Start()
     {
-        Debug.Log("begin");
         spriteRenderer = GetComponent<SpriteRenderer>();
         scoreDisplay.text = score + "pts";
+        wc = FindObjectOfType<WinController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (wc == null)
+            wc = FindObjectOfType<WinController>();
+
         // update our position to the mouse point
         Vector2 cameraPos = camera.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(cameraPos.x, cameraPos.y, 0);
@@ -35,6 +39,14 @@ public class CrossHair : MonoBehaviour
             StartCoroutine(flash(new Color[] { Color.yellow,Color.red}));
             
             
+        }
+        
+        if(score <= -49)
+        {
+            wc.SetLose();
+        }else if(score >= 90)
+        {
+            wc.SetWin();
         }
     }
 

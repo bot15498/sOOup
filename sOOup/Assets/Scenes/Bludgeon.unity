@@ -512,7 +512,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 810a0a0f050ed73419bbfcc6d1a4170f, type: 3}
   - {fileID: 21300000, guid: 6d21d8d11564cf849bc9208935e2394e, type: 3}
   - {fileID: 21300000, guid: 8087696e486e7f944b7b756b1709c48e, type: 3}
-  damagePerState: 30
+  damagePerState: 10
   health: 0
 --- !u!1 &1017304641
 GameObject:
@@ -646,6 +646,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939704988463499191, guid: e0eb1a542b72aa74881b2048e98448d3,
+        type: 3}
+      propertyPath: sceneOrder.Array.data[1]
+      value: RainingSoup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939704988463499191, guid: e0eb1a542b72aa74881b2048e98448d3,
+        type: 3}
+      propertyPath: sceneOrder.Array.data[0]
+      value: Bludgeon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0eb1a542b72aa74881b2048e98448d3, type: 3}

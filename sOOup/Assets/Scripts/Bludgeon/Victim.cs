@@ -9,6 +9,7 @@ public class Victim : MonoBehaviour
     public Sprite[] damageStates;
     public int damagePerState;
     public int health;
+    private WinController wc;
 
 
     void Start()
@@ -17,19 +18,24 @@ public class Victim : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = damagePerState * damageStates.Length;
         spriteRenderer.sprite = damageStates[damageStates.Length-1];
+        wc = FindObjectOfType<WinController>();
     }
 
     void Update()
     {
+        if(wc == null)
+            wc = FindObjectOfType<WinController>();
+
+
         // Check for user input
-        if(Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x"))
         {
             health--;
 
             if (health <= 0)
             {
-                Debug.Log("I AM VERY MUCH DEAD");
-                spriteRenderer.color = Color.black;
+                // WE WON
+                wc.SetWin();
 
             }
             else

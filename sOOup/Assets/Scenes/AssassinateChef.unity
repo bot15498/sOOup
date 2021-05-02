@@ -321,7 +321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 102.3, y: -24.6}
+  m_AnchoredPosition: {x: 102.3, y: -24.599976}
   m_SizeDelta: {x: 204.6, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239601903
@@ -412,6 +412,7 @@ MonoBehaviour:
   dude: {fileID: 8849761367200495622, guid: 9c6685932b3332b4397af1774ae3d6ca, type: 3}
   chef: {fileID: 7007520446300135779, guid: 85c4f9b82c8b24d4090d24b6a1caa2d7, type: 3}
   crowdSize: 100
+  numChefs: 3
   spawnRadius: 20
 --- !u!1001 &786693596
 PrefabInstance:
@@ -533,7 +534,7 @@ PrefabInstance:
     - target: {fileID: 5954036778109863882, guid: 88dfba11a982b394bbfd9354a7f700d3,
         type: 3}
       propertyPath: timerLength
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88dfba11a982b394bbfd9354a7f700d3, type: 3}
