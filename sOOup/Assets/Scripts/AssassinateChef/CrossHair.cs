@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrossHair : MonoBehaviour
 {
     public Camera camera;
     public Wander chef;
     public Wander dude;
+    public Text scoreDisplay;
 
     // Start is called before the first frame update
     private SpriteRenderer spriteRenderer;
+    private int score = 0;
     void Start()
     {
         Debug.Log("begin");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        scoreDisplay.text = score + "pts";
     }
 
     // Update is called once per frame
@@ -91,16 +95,25 @@ public class CrossHair : MonoBehaviour
         for(int i=0;i<objs.Count;i++)
         {
             GameObject t = objs[i];
-                if (t.tag == chef.tag)
-                {
-                    Debug.Log("Shot the chef");
-                    Destroy(t.gameObject);
-                }
-                else if (t.tag == dude.tag)
-                {
-                    Debug.Log("shot the dude");
-                    Destroy(t.gameObject);
-             }
+            if (t.tag == chef.tag)
+            {
+                Debug.Log("Shot the chef");
+                Destroy(t.gameObject);
+                score += 50;
+            }else if (t.tag == dude.tag)
+            {
+                Debug.Log("shot the dude");
+                Destroy(t.gameObject);
+                score--;
+            }
+        }
+        if(Mathf.Abs(score) == 1)
+        {
+            scoreDisplay.text = score + "pt";
+        }
+        else
+        {
+            scoreDisplay.text = score + "pts";
         }
     }
 
