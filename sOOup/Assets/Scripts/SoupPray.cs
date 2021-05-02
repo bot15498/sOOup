@@ -20,6 +20,7 @@ public class SoupPray : MonoBehaviour
         timer = 0;
         ispraying = false;
         wc = FindObjectOfType<WinController>();
+        buttonprompoty.SetActive(false);
         AS = GetComponent<AudioSource>();
     }
 
