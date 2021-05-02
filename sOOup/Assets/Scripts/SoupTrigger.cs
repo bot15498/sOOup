@@ -6,6 +6,7 @@ public class SoupTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
     bool playerInRange;
+    
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class SoupTrigger : MonoBehaviour
     void Update()
     {
         if(playerInRange == true && Input.GetKeyDown(KeyCode.E)) {
-            Debug.Log("SOUP");
+            FindObjectOfType<WinController>().SetWin();
         }
     }
 

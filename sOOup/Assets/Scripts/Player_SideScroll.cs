@@ -52,7 +52,15 @@ public class Player_SideScroll : MonoBehaviour
             NearGround = false;
         }
 
-        float x = Input.GetAxis("Horizontal");
+        float x = Input.GetAxisRaw("Horizontal");
+
+        if(x > 0)
+        {
+            facingRight = true;
+        } else if(x < 0)
+        {
+            facingRight = false;
+        }
 
         Vector2 dir = new Vector2(x, 0);
         Walk(dir);
@@ -84,8 +92,27 @@ public class Player_SideScroll : MonoBehaviour
             anim.SetBool("IsWalking", false);
         }
 
+        flipping();
+
+    }
 
 
+    private void flipping()
+    {
+        if(facingRight == true)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = 1;
+            transform.localScale = theScale;
+        }else if (facingRight == false)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = -1;
+            transform.localScale = theScale;
+        }
+
+        // Multiply the player's x local scale by -1
+        
     }
 
     
