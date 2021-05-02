@@ -97,7 +97,7 @@ public class Player_SideScroll : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
@@ -112,5 +112,5 @@ public class Player_SideScroll : MonoBehaviour
             transform.parent = null;
 
         }
-    }
+    }*/
 }

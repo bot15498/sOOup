@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SoupDrop
   - Evil Soup Drop
+  - Enemy
   layers:
   - Default
   - TransparentFX
