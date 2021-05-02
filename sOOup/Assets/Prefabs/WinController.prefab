@@ -43,16 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3f845de7b645141a21750c47ac890a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneOrder:
-  - Level1
-  - SellingSoup
-  - SoupTinder
-  - TopDown
-  - Level5
-  - Level2
-  - Bludgeon
-  - Level1
-  - Assassinate
+  sceneOrder: 01000000020000000300000004000000050000000600000007000000080000000900000001000000
   anime: {fileID: 0}
   isAnimating: 0
   didWin: 0

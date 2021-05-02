@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WinController : MonoBehaviour
 {
-    public List<string> sceneOrder = new List<string>();
+    public List<int> sceneOrder = new List<int>();
     public Animator anime;
     public bool isAnimating = false;
 
@@ -78,7 +78,16 @@ public class WinController : MonoBehaviour
         if(didWin)
         {
             currScene++;
-            SceneManager.LoadScene(sceneOrder[currScene]);
+            if(currScene >= sceneOrder.Count)
+            {
+                SceneManager.LoadScene(11);
+                winManagerExists = false;
+                Destroy(gameObject);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneOrder[currScene]);
+            }
         }
         else
         {

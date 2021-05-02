@@ -7,6 +7,7 @@ public class StealSoup : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool GuardIsPissed;
+    public GameObject uttonprompt;
     public float SoupEatTimer;
     float timer;
     bool playerInRange;
@@ -23,6 +24,7 @@ public class StealSoup : MonoBehaviour
         timerText.enabled = false;
         sr = GetComponent<SpriteRenderer>();
         AS = GetComponent<AudioSource>();
+        uttonprompt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,6 +58,7 @@ public class StealSoup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = true;
+            uttonprompt.SetActive(true);
         }
     }
 
@@ -64,6 +67,7 @@ public class StealSoup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = false;
+            uttonprompt.SetActive(false);
         }
     }
 }
