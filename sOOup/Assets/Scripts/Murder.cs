@@ -11,11 +11,13 @@ public class Murder : MonoBehaviour
     bool startedWin = false;
 
     bool playerInRange;
+    AudioSource AS;
 
     void Start()
     {
         playerInRange = false;
         murderBody.SetActive(false);
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,9 @@ public class Murder : MonoBehaviour
             murderBody.SetActive(true);
             if (!startedWin)
             {
+                AS.Play();
                 StartCoroutine(DelayWin());
+                
                 startedWin = true;
             }
         }

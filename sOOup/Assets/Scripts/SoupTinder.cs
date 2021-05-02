@@ -21,12 +21,15 @@ public class SoupTinder : MonoBehaviour
     private Animator anime;
     [SerializeField]
     private bool isReadyForSwiping = false;
-    
+    AudioSource AS;
+    public AudioSource AS2;
+
     void Start()
     {
         wc = FindObjectOfType<WinController>();
         anime = GetComponent<Animator>();
         instructions.SetActive(false);
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,12 +53,14 @@ public class SoupTinder : MonoBehaviour
                     if (ainput && lastA != ainput)
                     {
                         curr.GetComponent<TinderThrowaway>().SendFlying(true);
+                        AS2.Play();
                         numWrong += !currAnswer ? 0 : 1;
                         MakeProfile();
                     }
                     else if (dinput && lastD != dinput)
                     {
                         curr.GetComponent<TinderThrowaway>().SendFlying(false);
+                        AS2.Play();
                         numWrong += currAnswer ? 0 : 1;
                         MakeProfile();
                     }
@@ -65,11 +70,14 @@ public class SoupTinder : MonoBehaviour
                 }
                 else if (!calledEnd && currQuestion > numQuestions && numWrong == 0)
                 {
+                    AS.Play();
                     wc.SetWin();
+
                     calledEnd = true;
                 }
                 else if (!calledEnd && currQuestion > numQuestions && numWrong > 0)
                 {
+                    AS.Play();
                     wc.SetLose();
                     calledEnd = true;
                 }

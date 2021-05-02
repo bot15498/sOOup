@@ -7,17 +7,21 @@ public class SoupTrigger : MonoBehaviour
     // Start is called before the first frame update
     bool playerInRange;
     public GameObject buttonprompt;
+    AudioSource AS;
 
     void Start()
     {
         playerInRange = false;
         buttonprompt.SetActive(false);
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(playerInRange == true && Input.GetKeyDown(KeyCode.E)) {
+            AS.Play();
+
             FindObjectOfType<WinController>().SetWin();
         }
     }

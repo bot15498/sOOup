@@ -15,6 +15,8 @@ public class BegBoss : MonoBehaviour
     public GameObject[] BegTexts;
     public Vector3 offset;
     public GameObject fired;
+    AudioSource AS;
+    public AudioSource AS2;
 
     private bool didwin = false;
 
@@ -25,6 +27,7 @@ public class BegBoss : MonoBehaviour
         currentBegCount = 0;
         fired.SetActive(false);
         buttonpromptText1.SetActive(false);
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class BegBoss : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Instantiate(BegTexts[currentBegCount], player.transform.position + offset, player.transform.rotation);
+                AS2.Play();
                 currentBegCount += 1;
 
             }
@@ -51,6 +55,7 @@ public class BegBoss : MonoBehaviour
             if(!didwin && currentBegCount >= begCount)
             {
                 fired.SetActive(true);
+                AS.Play();
                 buttonpromptText1.SetActive(false);
                 didwin = true;
                 StartCoroutine(DelayWin());

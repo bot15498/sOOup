@@ -10,7 +10,7 @@ public class Victim : MonoBehaviour
     public int damagePerState;
     public int health;
     private WinController wc;
-
+    AudioSource AS;
 
     void Start()
     {
@@ -19,6 +19,7 @@ public class Victim : MonoBehaviour
         health = damagePerState * damageStates.Length;
         spriteRenderer.sprite = damageStates[damageStates.Length-1];
         wc = FindObjectOfType<WinController>();
+        AS = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -35,6 +36,7 @@ public class Victim : MonoBehaviour
             if (health <= 0)
             {
                 // WE WON
+                AS.Play();
                 wc.SetWin();
 
             }

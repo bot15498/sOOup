@@ -12,12 +12,14 @@ public class Hand : MonoBehaviour
     private bool lastClick = false;
     private bool isAnimation = false;
 
+    AudioSource AS;
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Distance to target:" + Vector2.Distance(transform.position, target.transform.position));
         initialPos = transform.position;
         anime = GetComponent<Animator>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,9 @@ public class Hand : MonoBehaviour
         // Check for user input
         if (click && lastClick != click)
         {
+
             //movementStatus = "TOWARDS";
+            AS.Play();
             anime.SetBool("isMoving", true);
             isAnimation = true;
         }

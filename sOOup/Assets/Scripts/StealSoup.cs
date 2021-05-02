@@ -13,6 +13,7 @@ public class StealSoup : MonoBehaviour
     public Text timerText;
     SpriteRenderer sr;
     public GameObject pivot;
+    AudioSource AS;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class StealSoup : MonoBehaviour
         timer = SoupEatTimer;
         timerText.enabled = false;
         sr = GetComponent<SpriteRenderer>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class StealSoup : MonoBehaviour
         
         if(timer <= 0)
         {
+            AS.Play();
             Debug.Log("PLAYER WIN");
         }
 
