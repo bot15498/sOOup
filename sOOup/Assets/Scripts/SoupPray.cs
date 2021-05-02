@@ -8,9 +8,11 @@ public class SoupPray : MonoBehaviour
     bool playerInRange;
     bool ispraying;
     public float PrayerTime;
+    public GameObject buttonprompoty;
     [SerializeField]
     float timer;
     private WinController wc;
+    private Animator anime;
     void Start()
     {
         playerInRange = false;
@@ -36,8 +38,11 @@ public class SoupPray : MonoBehaviour
         {
             player.anim.SetBool("pray", true);
             timer += Time.deltaTime;
+            anime = GetComponent<Animator>();
+            anime.SetBool("startPraying", true);
 
-            if(timer >= PrayerTime)
+
+            if (timer >= PrayerTime)
             {
                 Debug.Log("PLAYERWIN GOES HERE");
                 wc.SetWin();
@@ -60,6 +65,7 @@ public class SoupPray : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = true;
+            buttonprompoty.SetActive(true);
         }
     }
 
@@ -68,9 +74,9 @@ public class SoupPray : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerInRange = false;
+            buttonprompoty.SetActive(false);
 
-
-            if(ispraying == true)
+            if (ispraying == true)
             {
                 Debug.Log("SOUP FAIL");
                 wc.SetLose();
