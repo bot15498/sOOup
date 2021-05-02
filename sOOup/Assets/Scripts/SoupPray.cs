@@ -11,6 +11,7 @@ public class SoupPray : MonoBehaviour
     [SerializeField]
     float timer;
     private WinController wc;
+    private Animator anime;
     void Start()
     {
         playerInRange = false;
@@ -36,8 +37,11 @@ public class SoupPray : MonoBehaviour
         {
             player.anim.SetBool("pray", true);
             timer += Time.deltaTime;
+            anime = GetComponent<Animator>();
+            anime.SetBool("startPraying", true);
 
-            if(timer >= PrayerTime)
+
+            if (timer >= PrayerTime)
             {
                 Debug.Log("PLAYERWIN GOES HERE");
                 wc.SetWin();
