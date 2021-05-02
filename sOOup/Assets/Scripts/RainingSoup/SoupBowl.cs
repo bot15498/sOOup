@@ -28,7 +28,7 @@ public class SoupBowl : MonoBehaviour
     }
 
 
-    // called when the cube hits the floor
+    
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag == soupDrop.tag)

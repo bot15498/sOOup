@@ -5,10 +5,14 @@ using UnityEngine;
 public class CrossHair : MonoBehaviour
 {
     public Camera camera;
+    public Wander chef;
+    public Wander dude;
+
     // Start is called before the first frame update
     private SpriteRenderer spriteRenderer;
     void Start()
     {
+        Debug.Log("begin");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -23,7 +27,9 @@ public class CrossHair : MonoBehaviour
         // Logic to shoot when we click
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            killAll(targetsInSight);
             StartCoroutine(flash(new Color[] { Color.yellow,Color.red}));
+            
             
         }
     }
@@ -61,4 +67,41 @@ public class CrossHair : MonoBehaviour
         spriteRenderer.color = currentColor;
         flashing = false;
     }
+
+    private List<GameObject> targetsInSight = new List<GameObject>();
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == chef.tag || col.gameObject.tag == dude.tag)
+        {
+            targetsInSight.Add(col.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag == chef.tag || col.gameObject.tag == dude.tag)
+        {
+            targetsInSight.Remove(col.gameObject);
+        }
+    }
+
+    private void killAll(List<GameObject> objs)
+    {
+        for(int i=0;i<objs.Count;i++)
+        {
+            GameObject t = objs[i];
+                if (t.tag == chef.tag)
+                {
+                    Debug.Log("Shot the chef");
+                    Destroy(t.gameObject);
+                }
+                else if (t.tag == dude.tag)
+                {
+                    Debug.Log("shot the dude");
+                    Destroy(t.gameObject);
+             }
+        }
+    }
+
 }
