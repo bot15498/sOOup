@@ -621,8 +621,8 @@ MonoBehaviour:
   stampPrefab: {fileID: 8003071935830331701, guid: 6d8d895ccf539bb47a5b00c4481b58b7,
     type: 3}
   spawnpoint: {fileID: 595394046}
-  goodBounds: {fileID: 0}
-  allBounds: {fileID: 0}
+  goodBounds: {fileID: 2102927156}
+  allBounds: {fileID: 1034603905}
   lastClick: 0
 --- !u!212 &1326290483
 SpriteRenderer:
