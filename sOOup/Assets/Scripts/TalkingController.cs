@@ -17,13 +17,15 @@ public class TalkingController : MonoBehaviour
     public bool dialogueOpen = false;
     public bool choicesOpen = false;
     public bool isDone = false;
-
+    AudioSource AS;
     private WinController wc;
     private bool lastClick = false;
     private DialogueMessage nextMessage;
 
     void Start()
     {
+        AS = GetComponent<AudioSource>();
+
         // this reads easier if you start from the bottom and go up.
         // If you want to do this somewhere else copy and paste the script and redo this part I'm not making it modular.
         DialogueMessage failMsg2 = new DialogueMessage() { name = "Neighborhood Man", dialogue = "fook off", endAction = SpeechCheckFail };
@@ -102,6 +104,7 @@ public class TalkingController : MonoBehaviour
         dialogueOpen = false;
         isDone = true;
         wc.SetWin();
+        AS.Play();
     }
 
     public void SpeechCheckFail()

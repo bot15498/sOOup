@@ -10,15 +10,18 @@ public class CrossHair : MonoBehaviour
     public Wander dude;
     public Text scoreDisplay;
     private WinController wc;
+    public AudioSource AS2;
 
     // Start is called before the first frame update
     private SpriteRenderer spriteRenderer;
     private int score = 0;
+    AudioSource AS;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         scoreDisplay.text = score + "pts";
         wc = FindObjectOfType<WinController>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,17 +38,19 @@ public class CrossHair : MonoBehaviour
         // Logic to shoot when we click
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            AS.Play();
             killAll(targetsInSight);
             StartCoroutine(flash(new Color[] { Color.yellow,Color.red}));
             
             
         }
         
-        if(score <= -49)
+        if(score <= -2)
         {
             wc.SetLose();
         }else if(score >= 90)
         {
+            AS2.Play();
             wc.SetWin();
         }
     }
@@ -111,7 +116,7 @@ public class CrossHair : MonoBehaviour
             {
                 Debug.Log("Shot the chef");
                 Destroy(t.gameObject);
-                score += 50;
+                score += 500;
             }else if (t.tag == dude.tag)
             {
                 Debug.Log("shot the dude");
