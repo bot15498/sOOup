@@ -41,59 +41,66 @@ public class Player_SideScroll : MonoBehaviour
         /*RaycastHit2D GroundInfo = Physics2D.Raycast(groundDetection.position, -transform.up, distance);
         Debug.DrawLine(groundDetection.position, groundDetection.position + -transform.up * distance, Color.green);*/
 
-
-        if (cCheck.onGround == true)
+        if(canMove)
         {
-            //Debug.Log("nearground");
-            NearGround = true;
-        }
-        else if (cCheck.onGround == false)
-        {
-            NearGround = false;
-        }
+            if (cCheck.onGround == true)
+            {
+                //Debug.Log("nearground");
+                NearGround = true;
+            }
+            else if (cCheck.onGround == false)
+            {
+                NearGround = false;
+            }
 
-        float x = Input.GetAxisRaw("Horizontal");
+            float x = Input.GetAxisRaw("Horizontal");
 
-        if(x > 0)
-        {
-            facingRight = true;
-        } else if(x < 0)
-        {
-            facingRight = false;
-        }
+            if (x > 0)
+            {
+                facingRight = true;
+            }
+            else if (x < 0)
+            {
+                facingRight = false;
+            }
 
-        Vector2 dir = new Vector2(x, 0);
-        Walk(dir);
-        if (x == 0)
-        {
-            isWalking = false;
-        }
+            Vector2 dir = new Vector2(x, 0);
+            Walk(dir);
+            if (x == 0)
+            {
+                isWalking = false;
+            }
 
-        if (cCheck.onGround == false)
-        {
-            isWalking = false;
-        }
-        //rb.velocity = new Vector2(x * maxSpeed, rb.velocity.y);
+            if (cCheck.onGround == false)
+            {
+                isWalking = false;
+            }
+            //rb.velocity = new Vector2(x * maxSpeed, rb.velocity.y);
 
-        if ((Input.GetKeyDown(KeyCode.W) && NearGround == true || Input.GetKeyDown(KeyCode.Space) && NearGround == true))
-        {
-            rb.velocity = Vector2.up * JumpForce;
-            NearGround = false;
-        }
+            if ((Input.GetKeyDown(KeyCode.W) && NearGround == true || Input.GetKeyDown(KeyCode.Space) && NearGround == true))
+            {
+                rb.velocity = Vector2.up * JumpForce;
+                NearGround = false;
+            }
 
 
 
-        if (x != 0)
-        {
-            anim.SetBool("IsWalking", true);
-        }
+            if (x != 0)
+            {
+                anim.SetBool("IsWalking", true);
+            }
+            else
+            {
+                anim.SetBool("IsWalking", false);
+            }
+
+            flipping();
+        }    
         else
         {
-            anim.SetBool("IsWalking", false);
+            Vector2 dir = new Vector2(0, 0);
+            Walk(dir);
         }
-
-        flipping();
-
     }
 
 
@@ -119,10 +126,7 @@ public class Player_SideScroll : MonoBehaviour
     
     void Walk(Vector2 dir)
     {
-        if(canMove)
-        {
-            rb.velocity = new Vector2(dir.x * maxSpeed, rb.velocity.y);
-        }
+        rb.velocity = new Vector2(dir.x * maxSpeed, rb.velocity.y);
     }
 
 

@@ -83,7 +83,7 @@ public class SoupTinder : MonoBehaviour
         possibleAnswers.RemoveAt(idx);
         possibleSprites.RemoveAt(idx);
         currQuestion++;
-        curr.GetComponent<TinderThrowaway>().renderer.sortingOrder = -1 * currQuestion;
+        curr.GetComponent<TinderThrowaway>().renderer.sortingOrder = 99 - currQuestion;
     }
 
     private IEnumerator WaitForPhoneOpen()

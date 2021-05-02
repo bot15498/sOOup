@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnableTinter : MonoBehaviour
 {
-    GameObject phone;
+    public GameObject phone;
+    public GameObject player;
+    private bool canOpenPhone = false;
     void Start()
     {
         
@@ -12,11 +14,20 @@ public class EnableTinter : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && canOpenPhone)
+        {
+            phone.SetActive(true);
+            player.GetComponent<Player_SideScroll>().canMove = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        phone.SetActive(true);
+        canOpenPhone = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canOpenPhone = false;
     }
 }

@@ -82,7 +82,7 @@ public class WinController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(sceneOrder[currScene]);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         yield return null;
     }

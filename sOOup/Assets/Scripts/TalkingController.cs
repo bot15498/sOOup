@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TalkingController : MonoBehaviour
 {
+    public GameObject lady;
     public DialogueMessage topMessage;
     public Text nameTxtBox;
     public Text dialogueTextBox;
@@ -25,8 +26,10 @@ public class TalkingController : MonoBehaviour
     {
         // this reads easier if you start from the bottom and go up.
         // If you want to do this somewhere else copy and paste the script and redo this part I'm not making it modular.
-        DialogueMessage failMsg = new DialogueMessage() { name = "Neighborhood Man", dialogue = "fook off", endAction = SpeechCheckFail };
-        DialogueMessage passMsg = new DialogueMessage() { name = "Neighborhood Man", dialogue = "I'll take 50 cans.", endAction = SpeechCheckPass };
+        DialogueMessage failMsg2 = new DialogueMessage() { name = "Neighborhood Man", dialogue = "fook off", endAction = SpeechCheckFail };
+        DialogueMessage failMsg = new DialogueMessage() { name = "Neighborhood Man", dialogue = "fook off", next = failMsg2 };
+        DialogueMessage passMsg2 = new DialogueMessage() { name = "Neighborhood Man", dialogue = "I'll take 50 cans.", endAction = SpeechCheckPass };
+        DialogueMessage passMsg = new DialogueMessage() { name = "Neighborhood Man", dialogue = "I'll take 50 cans.", next = passMsg2 };
 
         DialogueMessage msg6_2 = new DialogueMessage() { name = "Neighborhood Man", dialogue = "Oh that makes sense.", next = passMsg };
         DialogueMessage msg6_1 = new DialogueMessage() { name = "Skipper", dialogue = "It's very good for dipping and complements starches as a side.", next = msg6_2 };
@@ -70,11 +73,12 @@ public class TalkingController : MonoBehaviour
 
         if (!wc.isAnimating)
         {
-            bool click = Input.GetKey(KeyCode.Mouse0);
+            bool click = Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.E);
             if (canStartDialogue && !choicesOpen && !isDone && click && lastClick != click)
             {
                 if (!dialogueOpen)
                 {
+                    lady.SetActive(true);
                     nameBox.SetActive(true);
                     nameTxtBox.gameObject.SetActive(true);
                     dialogueBox.SetActive(true);
